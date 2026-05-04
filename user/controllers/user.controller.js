@@ -33,9 +33,13 @@ const blacklistModel = require('../model/blacklist.model')
 
         res.cookie('token',token);
 
+        delete user._doc.password;
+
         res.status(StatusCodes.CREATED).json({
             message: "User Registered successfully",
-            success : true
+            success : true,
+            token,
+            newUser
         })
 
 
@@ -82,10 +86,13 @@ async function logIn(req,res){
 
     res.cookie('token',token)
 
+    delete user._doc.password;
 
     return res.status(StatusCodes.OK).json({
         message : "User successfully logged in",
-        success : true
+        success : true,
+        token,
+        user
     })
 
 }catch(error){

@@ -7,10 +7,15 @@ const connect = require('./db/db')
 
 const cookieParser = require('cookie-parser')
 
+const rabbitMq = require('./service/rabbit')
+
 const app = express();
 
 
 const userRoutes =  require('./routes/user.routes')
+
+
+rabbitMq.connect();
 
 connect();
 
